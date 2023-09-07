@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNGX</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    main {
+        display: grid;
+        text-align: center;
+        background-color: rgb(110, 93, 93);
+        height: 100vh;
+        overflow-y: hidden;
+        align-content: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    main h2 {
+        margin-bottom: 1em;
+        font-style: italic;
+    }
+
+    main img {
+        height: 15em;
+        margin: auto;
+        border-radius: 1em;
+    }
+
+    main p {
+        margin-top: 1em;
+        font-family: sans-serif;
+        font-weight: 600;
+    }
+
+    main a {
+        text-decoration: none;
+        margin-top: 0.7em;
+        color: rgb(128, 33, 33);
+    }
+</style>
+
+<body>
+    <main>
+        <h1>USER PROFILE</h1>
+        <h2 data-testid="slackUserName">ebubelovescode</h2>
+        <img src="/profilePic.jpeg" alt="ebubelovescode" data-testid="slackDisplayImage">
+        <p data-testid="currentDayOfTheWeek"></p>
+        <p data-testid="currentUTCTime"></p>
+        <p data-testid="myTrack">Frontend Track</p>
+        <a href="https://github.com/Lawrenebube" target="_blank" rel="noopener noreferrer"
+            data-testid=“githubURL”>Github Link</a>
+    </main>
+
+
+    <script>
+
+        function updateCurrentUTCTimeAndDay() {
+            const dayOfWeek = new Date().toLocaleDateString("en-US", {
+                weekday: "long",
+            });
+
+            document.querySelector('[data-testid="currentDayOfTheWeek"]'
+            ).textContent = dayOfWeek;
+            const currentDate = new Date();
+            const hours = currentDate.getUTCHours().toString().padStart(2, '0');
+            const minutes = currentDate.getUTCMinutes().toString().padStart(2, '0');
+            const seconds = currentDate.getUTCSeconds().toString().padStart(2, '0');
+            const currentUTCTime = `${hours}:${minutes}:${seconds}`;
+            document.querySelector('[data-testid="currentUTCTime"]').textContent = currentUTCTime;
+        }
+        updateCurrentUTCTimeAndDay();
+        setInterval(updateCurrentUTCTimeAndDay, 1000);
+
+    </script>
+</body>
+
+</html>
