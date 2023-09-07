@@ -66,21 +66,22 @@
     <script>
 
         function updateCurrentUTCTimeAndDay() {
+            const currentUTCTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
+
             const dayOfWeek = new Date().toLocaleDateString("en-US", {
                 weekday: "long",
             });
 
             document.querySelector('[data-testid="currentDayOfTheWeek"]'
             ).textContent = dayOfWeek;
-            const currentDate = new Date();
-            const hours = currentDate.getUTCHours().toString().padStart(2, '0');
-            const minutes = currentDate.getUTCMinutes().toString().padStart(2, '0');
-            const seconds = currentDate.getUTCSeconds().toString().padStart(2, '0');
-            const currentUTCTime = `${hours}:${minutes}:${seconds}`;
-            document.querySelector('[data-testid="currentUTCTime"]').textContent = currentUTCTime;
+            const currentUTCTime = Date.now();
+            currentUTCTimeElement.textContent = currentUTCTime;
+
         }
         updateCurrentUTCTimeAndDay();
         setInterval(updateCurrentUTCTimeAndDay, 1000);
+    const currentUTCTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
+
 
     </script>
 </body>
